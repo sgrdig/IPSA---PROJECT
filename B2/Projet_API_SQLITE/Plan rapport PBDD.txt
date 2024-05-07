@@ -1,0 +1,11 @@
+1. Introduction : Présentation du projet de base de données, de ses objectifs et de son contexte.
+
+2. Analyse des besoins : Description des besoins spécifiques en termes de stockage, d'accès et de gestion des données.
+
+3. Conception de la base de données : Présentation du modèle conceptuel et logique de la base de données, y compris les entités, les relations et les attributs.
+
+4. Implémentation technique : Détails sur les choix technologiques, les outils et les langages utilisés pour mettre en œuvre la base de données.
+
+5. Tests et validation : Présentation des tests effectués pour garantir la qualité et la fiabilité de la base de données.
+
+6. Conclusion : Récapitulatif des principaux points abordés dans le rapport et perspectives futures.
