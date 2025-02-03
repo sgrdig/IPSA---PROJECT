@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Connexion</h1>
+</header>
+
+<div class="container">
+    <section>
+        <h2 class="section-title">Entrez votre ID Utilisateur</h2>
+        <!-- Formulaire de login avec méthode POST -->
+        <form action="/login" method="POST">
+            <label for="user-id">ID Utilisateur :</label>
+            <input type="number" id="user-id" name="user_id" required>
+
+            <button type="submit" class="button">Se Connecter</button>
+        </form>
+    </section>
+</div>
+
+</body>
+</html>

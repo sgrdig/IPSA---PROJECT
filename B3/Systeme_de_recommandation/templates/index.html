@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page d'Accueil</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<header>
+    <h1>Bienvenue sur notre plateforme de recommandations de produits</h1>
+    <p>Votre ID utilisateur est : {{ user_id }}</p> <!-- Afficher l'ID utilisateur -->
+</header>
+
+<div class="container">
+    <section>
+        <h2 class="section-title">Choisissez une option :</h2>
+        <a href="/profile" class="button">Page de Profil Utilisateur</a>
+        <a href="/product/1" class="button">Page de Produit</a>
+        <a href="/evaluation" class="button">Formulaire d’Évaluation</a>
+        <a href="/recommend_item" class="button">Recherche de Produits</a>
+    </section>
+</div>
+
+</body>
+</html>
+

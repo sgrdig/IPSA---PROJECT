@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche Produit</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script>
+        // JavaScript to show a pop-up message if provided
+        function showMessage(message) {
+            if (message) {
+                alert(message); // Display a pop-up alert with the message
+            }
+        }
+    </script>
+</head>
+<body onload="showMessage('{{ message }}')">
+
+<header>
+    <h1>Rechercher un Produit</h1>
+</header>
+
+<div class="container">
+    <section>
+        <h2 class="section-title">Recherche</h2>
+        <form action="/get_note" method="POST">
+            <label for="product-id">ID du Produit :</label>
+            <input type="number" id="product-id" name="item_num" required> <!-- Changed 'product_id' to 'item_num' -->
+            <button type="submit">Soumettre la recherche</button>
+
+        </form>
+    </section>
+    <section>
+        <a href="/index" class="button">retour</a>
+    </section>
+</div>
+
+</body>
+</html>
+
+

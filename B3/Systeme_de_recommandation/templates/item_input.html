@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Recommander des Articles</title>
+</head>
+<body>
+    <h1>Recommander des Articles Basés sur un Produit</h1>
+    <form action="/recommend_item" method="post">
+        <label for="item_number">Entrez le numéro de l'article :</label>
+        <input type="number" id="item_num" name="item_number" required>
+        <button type="submit">Obtenir des Recommandations</button>
+    </form>
+    <a href="/index">Retour</a>
+</body>
+</html>

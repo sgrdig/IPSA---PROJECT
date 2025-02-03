@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #d8d8d8;
+}
+
+header {
+    background-color: #1c3454;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-size: 1em;
+}
+
+.container {
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.recommendation-card, .product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+}
+
+/* Styles pour les boutons */
+.button {
+    background-color: #1c3454;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    cursor: pointer;
+    margin-top: 20px; /* Augmenter l'espacement pour plus de visibilité */
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    display: inline-block;
+    width: 250px; /* Largeur uniforme pour les boutons */
+    box-sizing: border-box;
+    text-decoration: none; /* Assurez-vous qu'il n'y a pas de soulignement pour les liens */
+    margin-bottom: 10px; /* Espacement en bas du bouton */
+}
+
+/* Effet au survol */
+.button:hover {
+    background-color: #005b89; /* Couleur au survol */
+}
+
+/* Styles pour les champs de formulaire */
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+button[type="submit"] {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+ul {
+    list-style-type: disc; /* Pour afficher les bullets */
+    padding-left: 20px; /* Ajoute un peu d'espacement à gauche pour les bullets */
+}
+
+li {
+    margin-bottom: 10px; /* Espacement entre les éléments de la liste */
+}

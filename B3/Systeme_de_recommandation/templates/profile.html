@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Utilisateur - Recommandations</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Votre Profil et Recommandations</h1>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2 class="section-title">Recommandations pour l'utilisateur {{ user_id }}</h2>
+            <div id="user-profile">
+                <!-- Boucle sur les recommandations -->
+                {% for recommendation in recommended_items %}
+                <div class="recommendation-card">
+                    <h3>{{ recommendation.product_name }}</h3>
+                    <p>Note : {{ recommendation.rating }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section>
+            <a href="/index" class="button">Retour</a>
+        </section>
+
+    </div>
+</body>
+</html>

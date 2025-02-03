@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/css/style.css">
+    <title>Recherche de Produits</title>
+</head>
+<body>
+
+<header>
+    <h1>Recherche de Produits</h1>
+</header>
+
+<div class="container">
+    <section>
+        <h2 class="section-title">Rechercher un Produit</h2>
+        <form action="/search" method="GET">
+            <input type="text" name="search_term" id="item_number" placeholder="Rechercher un produit..." required>
+            <button type="submit" class="button">Rechercher</button>
+        </form>
+    </section>
+
+    <section>
+        <h2 class="section-title">Résultats de la Recherche</h2>
+        <div id="search-results">
+        </div>
+        <section>
+            <a href="/index" class="button">retour</a>
+        </section>
+    </section>
+</div>
+
+</body>
+</html>

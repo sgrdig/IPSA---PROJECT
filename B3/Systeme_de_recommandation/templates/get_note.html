@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Utilisateur - Recommandations</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Votre Profil et Recommandations</h1>
+    </header>
+
+    <div class="container">
+        <!-- Section pour afficher les recommandations -->
+        <section>
+            <h2 class="section-title">Recommandations pour l'utilisateur {{ user_id }}</h2>
+            <div id="user-profile">
+                <!-- Boucle sur les recommandations -->
+                {% for recommendation in recommendations %}
+                <div class="recommendation-card">
+                    <h3>Produit {{ recommendation.product_id }}: {{ recommendation.product_name }}</h3>
+                    <p>Note : {{ recommendation.rating }}</p>
+                    <a href="/product/{{ recommendation.product_id }}" class="button">Voir Détails</a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Section pour revenir à l'index -->
+        <section>
+            <a href="/index" class="button">Retour</a>
+        </section>
+
+        <!-- Aucun formulaire pour l'instant car nous n'avons plus besoin d'item_number -->
+        <!-- L'utilisateur voit simplement les recommandations sans entrée supplémentaire -->
+    </div>
+</body>
+</html>
