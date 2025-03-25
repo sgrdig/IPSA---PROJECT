@@ -1,6 +1,8 @@
 import re 
 from nltk.corpus import stopwords
 import nltk
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 
 
 nltk.download('stopwords', quiet=True)
@@ -17,3 +19,17 @@ def clean_text(text):
     words = [word for word in words if word not in stop_words]
     
     return " ".join(words)
+
+
+def token(df):
+    max_length = 40
+    vocab_size = 10000
+    tokenizer = Tokenizer(num_words=vocab_size, oov_token="<OOV>")
+
+    tokenizer.fit_on_texts(df['questions'].tolist() + df['reponce'].tolist())
+
+    X = tokenizer.texts_to_sequences(df['questions'].tolist())
+    y = tokenizer.texts_to_sequences(df['reponce'].tolist())
+
+    X = pad_sequences(X, maxlen=max_length, padding='post')  
+    y = pad_sequences(y, maxlen=max_length, padding='post')
