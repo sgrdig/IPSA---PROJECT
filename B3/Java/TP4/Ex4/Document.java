@@ -9,7 +9,7 @@ public class Document {
     String langue;
     int nbrExpl;
     int nbrExplDispo = 1;
-    static List<Document> documents = new ArrayList<>(); // Made static to maintain a global list of documents
+    static List<Document> documents = new ArrayList<>(); 
 
     public Document(float code, int dateEdition, String discipline, String langue, int nbrExpl, int nbrExplDispo, String theme) {
         this.code = code;
