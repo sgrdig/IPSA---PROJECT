@@ -1,7 +1,7 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Document {
+
     float code;
     String discipline;
     String theme;
@@ -9,9 +9,9 @@ public class Document {
     String langue;
     int nbrExpl;
     int nbrExplDispo = 1;
-    static List<Document> documents = new ArrayList<>(); 
+    //static List<Document> documents = new ArrayList<>(); 
 
-    public Document(float code, int dateEdition, String discipline, String langue, int nbrExpl, int nbrExplDispo, String theme) {
+    public Document(float code, int dateEdition, String discipline, String langue, int nbrExpl, int nbrExplDispo, String theme ,List<Document> documents ) {
         this.code = code;
         this.dateEdition = dateEdition;
         this.discipline = discipline;
@@ -26,7 +26,7 @@ public class Document {
             }
         }
 
-        documents.add(this);
+        //documents.add(this);
     }
 
     @Override
@@ -42,13 +42,13 @@ public class Document {
                 '}';
     }
 
-    public void allDocs() {
+    public void allDocs(List<Document> documents ) {
         for (Document doc : documents) {
             System.out.println(doc.toString());
         }
     }
 
-    public void empruntDocs(float code, Adherents adherent, java.util.Date dEmprunt) {
+    public void empruntDocs(float code, Adherents adherent, java.util.Date dEmprunt , List<Document> documents ) {
         for (Document doc : documents) {
             if (doc.code == code && doc.nbrExplDispo > 0) {
                 doc.nbrExplDispo -= 1;
@@ -61,7 +61,7 @@ public class Document {
         System.out.println("Pas de Docs dispo, réessaye pls");
     }
 
-    public void miseaJour(float code, int dateEdition, String discipline, String langue, int nbrExpl, int nbrExplDispo, String theme) {
+    public void miseaJour(float code, int dateEdition, String discipline, String langue, int nbrExpl, int nbrExplDispo, String theme , List<Document> documents ) {
         for (Document doc : documents) {
             if (doc.code == code) {
                 doc.dateEdition = dateEdition;
@@ -77,7 +77,7 @@ public class Document {
         System.out.println("Aucun doc trouve avc code " + code + ".");
     }
 
-    public void recherche(float code) {
+    public void recherche(float code , List<Document> documents ) {
         int cpt = 0;
         for (Document document : documents) {
             System.err.println("code: " + document.code + " recherche: " + code);
@@ -89,7 +89,10 @@ public class Document {
         System.out.println("Y'a " + cpt + " doc ou docs ki corresponde (ent)");
     }
 
-    public static void main(String[] args) {
+    
+
+
+    /*public static void main(String[] args) {
 
         Document doc1 = new Document(1, 2023, "Maths", "Anglais", 10, 8, "Algebre");
         Document doc2 = new Document(2, 2022, "Physique", "Francais", 5, 3, "Mecanique");
@@ -117,5 +120,61 @@ public class Document {
 
         System.out.println("\nEmprunt du Doc avc code 1.0 encore:");
         doc1.empruntDocs(1.0f, adherent, new java.util.Date());
+    }*/
+
+    public float getCode() {
+        return code;
+    }
+
+    public String getDiscipline() {
+        return discipline;
+    }
+
+    public String getTheme() {
+        return theme;
+    }
+
+    public int getDateEdition() {
+        return dateEdition;
+    }
+
+    public String getLangue() {
+        return langue;
+    }
+
+    public int getNbrExpl() {
+        return nbrExpl;
+    }
+
+    public int getNbrExplDispo() {
+        return nbrExplDispo;
+    }
+
+    public void setCode(float code) {
+        this.code = code;
+    }
+
+    public void setDiscipline(String discipline) {
+        this.discipline = discipline;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public void setDateEdition(int dateEdition) {
+        this.dateEdition = dateEdition;
+    }
+
+    public void setLangue(String langue) {
+        this.langue = langue;
+    }
+
+    public void setNbrExpl(int nbrExpl) {
+        this.nbrExpl = nbrExpl;
+    }
+
+    public void setNbrExplDispo(int nbrExplDispo) {
+        this.nbrExplDispo = nbrExplDispo;
     }
 }

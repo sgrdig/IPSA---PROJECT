@@ -1,10 +1,13 @@
+import java.util.List;
+
 public class Livre extends Document {
     private String maisonEdi;
     private String codeISBN;
     private String auteurs;
 
-    public Livre(String codeISBN, String maisonEdi, String auteurs, float code, int dateEdition, String discipline, String langue, int nbrExpl, int nbrExplDispo, String theme) {
-        super(code, dateEdition, discipline, langue, nbrExpl, nbrExplDispo, theme);
+    public Livre(float code, int dateEdition, String discipline, String langue, int nbrExpl, int nbrExplDispo, String theme ,List<Document> documents) {
+        super(code, dateEdition, discipline, langue, nbrExpl, nbrExplDispo, theme , documents);
+    
         this.codeISBN = codeISBN;
         this.maisonEdi = maisonEdi;
         this.auteurs = auteurs;
