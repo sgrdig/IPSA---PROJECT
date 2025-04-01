@@ -3,10 +3,10 @@ import java.util.List;
 public class Module {
     private String code;
     private String nom;
-    private List<Module> preRequis;
+    private List preRequis;
     private List<ElementDeModule> elements;
 
-    public Module(String code, String nom, List<Module> preRequis, List<ElementDeModule> elements) {
+    public Module(String code, String nom, List preRequis, List<ElementDeModule> elements) {
         this.code = code;
         this.nom = nom;
         this.preRequis = preRequis;
@@ -33,7 +33,7 @@ public class Module {
         return preRequis;
     }
 
-    public void setPreRequis(List<Module> preRequis) {
+    public void setPreRequis(List preRequis) {
         this.preRequis = preRequis;
     }
 

@@ -54,7 +54,7 @@ public class Document {
                 doc.nbrExplDispo -= 1;
 
                 Emprunts e = new Emprunts((int) code, adherent, dEmprunt);
-                System.out.println("Doc emprunté avc succès: " + e);
+                System.out.println("Doc emprunte avc succes: " + e);
                 return;
             }
         }
@@ -74,37 +74,44 @@ public class Document {
                 return;
             }
         }
-        System.out.println("Aucun doc trouvé avc code " + code + ".");
+        System.out.println("Aucun doc trouve avc code " + code + ".");
     }
 
     public void recherche(float code) {
         int cpt = 0;
         for (Document document : documents) {
+            System.err.println("code: " + document.code + " recherche: " + code);
             if (document.code == code) {
                 cpt += 1;
                 System.out.println(document.toString());
             }
         }
-        System.out.println("Y'a " + cpt + " doc(s) ki correspond(ent) à ta demande.");
+        System.out.println("Y'a " + cpt + " doc ou docs ki corresponde (ent)");
     }
 
     public static void main(String[] args) {
 
-        Document doc1 = new Document(1.0f, 2023, "Maths", "Anglais", 10, 8, "Algèbre");
-        Document doc2 = new Document(2.0f, 2022, "Physique", "Français", 5, 3, "Mécanique");
+        Document doc1 = new Document(1, 2023, "Maths", "Anglais", 10, 8, "Algebre");
+        Document doc2 = new Document(2, 2022, "Physique", "Francais", 5, 3, "Mecanique");
+
+        Document doc3 = new Document(1, 2023, "Maths", "Francais", 10, 8, "Algebre");
+
 
         System.out.println("Tous les Docs:");
         doc1.allDocs();
 
         System.out.println("\nMaj du Doc avc code 1.0:");
-        doc1.miseaJour(1.0f, 2024, "Maths", "Anglais", 15, 12, "Algèbre Avancée");
+        doc1.miseaJour(1.0f, 2024, "Maths", "Anglais", 15, 12, "Algebre ++");
         doc1.allDocs();
 
         System.out.println("\nRecherche du Doc avc code 2.0:");
-        doc1.recherche(2.0f);
+        doc1.recherche(1);
+
+        System.out.println("\nRecherche du Doc avc code 2.0:");
+        doc1.recherche(2);
 
         System.out.println("\nEmprunt du Doc avc code 1.0:");
-        Adherents adherent = new Adherents("123 Rue", 1, "email@example.com", "Jean", "Dupont", Privilege.ETUDIANT, "123456789");
+        Adherents adherent = new Adherents("123 Rue", 1, "tagrandmere@example.com", "Jean", "Dupont", Privilege.ETUDIANT, "123456789");
         doc1.empruntDocs(1.0f, adherent, new java.util.Date());
         doc1.allDocs();
 
