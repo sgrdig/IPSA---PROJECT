@@ -1,0 +1,7 @@
+@Service
+
+public class StudentServices {
+
+    @Autowired
+    private final StudentRepository studentRepository;
+}
