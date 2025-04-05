@@ -138,7 +138,7 @@ encoder_inputs = Input(shape=(max_sequence_length,))
 encoder_masking = Masking(mask_value=0)(encoder_inputs)  # Mask out padding (value 0)
 encoder_embedding = Embedding(vocab_size, embedding_dim)(encoder_masking)
 encoder_bilstm, forward_h, forward_c, backward_h, backward_c = Bidirectional(
-    LSTM(units, return_state=True)
+    LSTM(units, return_state=True, dropout=0.3, recurrent_dropout=0.3)
 )(encoder_embedding)
 
 encoder_state_h = Concatenate()([forward_h, backward_h])
@@ -148,20 +148,26 @@ encoder_states = [encoder_state_h, encoder_state_c]
 decoder_inputs = Input(shape=(max_sequence_length,))
 decoder_masking = Masking(mask_value=0)(decoder_inputs)
 decoder_embedding = Embedding(vocab_size, embedding_dim)(decoder_masking)
-encoder_embedding = Dropout(0.3)(encoder_embedding)  # Dropout pour éviter l'overfitting
-encoder_embedding = BatchNormalization()(encoder_embedding)
+decoder_embedding = Dropout(0.3)(decoder_embedding)  # Dropout for regularization
+decoder_embedding = BatchNormalization()(decoder_embedding)
 
-decoder_bilstm = Bidirectional(LSTM(units, return_sequences=True , dropout=0.3, recurrent_dropout=0.3))(decoder_embedding)
-decoder_dense = Dense(vocab_size, activation='softmax')(decoder_bilstm)
+decoder_lstm = LSTM(units * 2, return_sequences=True, return_state=True, dropout=0.3, recurrent_dropout=0.3)
+decoder_outputs, _, _ = decoder_lstm(decoder_embedding, initial_state=encoder_states)
+
+attention = AdditiveAttention()([decoder_outputs, encoder_bilstm])
+attention_combined = Concatenate()([decoder_outputs, attention])
+
+decoder_dense = Dense(vocab_size, activation='softmax')(attention_combined)
 
 bilstm_model = Model([encoder_inputs, decoder_inputs], decoder_dense)
 bilstm_model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
 
 bilstm_model.summary()
 
-bilstm_model.fit([X_padded, y_padded], decoder_targets, batch_size=batch_size, epochs=30, validation_split=0.2)
+# Add EarlyStopping callback
+early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True)
 
-# prompt: save le model sur collab et sur mpn pc
+bilstm_model.fit([X_padded, y_padded], decoder_targets, batch_size=batch_size, epochs=30, validation_split=0.2, callbacks=[early_stopping])
 
 # Save the model to Google Drive
 model_save_path = "/content/drive/My Drive/Colab Notebooks/Data/bilstm_model.h5"
@@ -306,6 +312,7 @@ print(f"Réponse: {response}")
 
 import numpy as np
 from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.callbacks import EarlyStopping
 
 # Fonction de décodage pour générer une réponse
 def generate_response(input_text, model, tokenizer, max_sequence_length):
