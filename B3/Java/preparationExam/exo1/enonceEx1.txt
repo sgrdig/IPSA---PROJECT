@@ -1,0 +1,34 @@
+Objectif : Créer une application pour gérer un système de réservation de billets pour un événement. L'application doit permettre de gérer les types de billets, les réservations des utilisateurs, et l'historique des ventes.
+
+Contexte :
+Un événement est organisé dans une salle avec un nombre limité de places. Il existe plusieurs types de billets pour cet événement, chacun ayant des caractéristiques différentes. Un utilisateur peut réserver un ou plusieurs billets pour l'événement en fonction de la disponibilité des places. Après chaque réservation, les informations sont enregistrées pour créer un historique des ventes. Les utilisateurs peuvent également annuler des réservations si nécessaire.
+
+Exigences :
+
+Un billet a un prix, un type (standard ou VIP), un statut (réservé ou disponible), et est associé à un utilisateur lorsqu'il est réservé.
+
+Un utilisateur est défini par un nom, un email, et une liste de billets réservés.
+
+Le système de réservation doit permettre d'ajouter des billets, de réserver des billets pour un utilisateur, de supprimer des réservations, et de consulter l'historique des ventes.
+
+Services attendus :
+
+Ajout de billets : Le système doit permettre d’ajouter des billets pour l’événement, en précisant leur type (standard ou VIP), leur prix et leur statut de disponibilité.
+
+Réservation de billets : Lorsqu’un utilisateur réserve un billet, le billet devient réservé, et le nombre de billets disponibles diminue. Un utilisateur peut réserver plusieurs billets en une seule transaction.
+
+Annulation de réservation : Un utilisateur peut annuler une réservation, ce qui remet le billet en statut "disponible" et l'utilisateur est retiré de la liste des réservations du billet.
+
+Historique des ventes : Le système doit permettre de consulter l’historique des ventes, c'est-à-dire de lister tous les billets réservés, ainsi que les utilisateurs associés.
+
+Contraintes supplémentaires :
+
+Lorsqu’un billet est réservé, il doit être marqué comme réservé et ne doit plus être disponible pour d’autres utilisateurs.
+
+Lorsqu’un billet est annulé, il doit revenir dans le stock et être marqué comme "disponible".
+
+Le système doit garantir qu’un utilisateur ne puisse pas réserver plus de billets que le nombre de places disponibles pour un type de billet donné.
+
+L'historique des ventes doit inclure les informations suivantes : le type de billet, le prix, le nom de l'utilisateur, et la date de la réservation.
+
+À faire : Propose une structure de classes et implémente les services décrits dans cet énoncé. Pense à gérer les réservations de manière efficace et à fournir une méthode pour consulter l’historique des ventes. 
