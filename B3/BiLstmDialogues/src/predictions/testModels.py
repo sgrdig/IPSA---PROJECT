@@ -4,35 +4,31 @@ from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import pickle
 import os
+from tensorflow.keras.models import load_model
+
+MAX_SEQUENCE_LENGTH = 40 
 
 model_path = "../../savedModels/bilstm.h5"
 tokenizer_path = "../../savedModels/tokenizer.pkl"
 
-model = tf.keras.models.load_model(model_path)
+with open("tokenizer.pkl", "rb") as f:
+    tokenizer = pickle.load(f)
 
-max_len = 100 
-vocab_size = 30000 
 
-with open(tokenizer_path, "rb") as handle:
-    tokenizer = pickle.load(handle)
+model = load_model("chat_model.h5")
 
-def predict_text(text):
-    seq = tokenizer.texts_to_sequences([text])
-    padded_seq = pad_sequences(seq, maxlen=max_len, padding='post')
-    prediction = model.predict(padded_seq)
-    return prediction
+def generate_response(input_text):
+    sequence = tokenizer.texts_to_sequences([input_text])
+    padded = pad_sequences(sequence, maxlen=MAX_SEQUENCE_LENGTH, padding='post', truncating='post')
+    prediction = model.predict(padded)
+    predicted_seq = np.argmax(prediction, axis=-1)[0]
+    response_words = [word for idx in predicted_seq if idx != 0 for word, i in tokenizer.word_index.items() if i == idx]
+    return ' '.join(response_words)
 
-example_text = "Hello, how are you ?"
-result = predict_text(example_text)
-print("Prédiction :", result)
-
-def decode_prediction(prediction):
-    predicted_indices = np.argmax(prediction, axis=-1)
-    predicted_words = [tokenizer.index_word.get(index, "<UNK>") for index in predicted_indices.flatten()]
-    return " ".join(predicted_words)
-
-example_text = "Bonjour, comment vas-tu ?"
-result = predict_text(example_text)
-decoded_result = decode_prediction(result)
-
-print("Prédiction :", decoded_result)
+print("Chatbot prêt. Tape 'quit' pour sortir.")
+while True:
+    user_input = input("Vous: ")
+    if user_input.lower() == 'quit':
+        break
+    response = generate_response(user_input)
+    print("Bot:", response)
